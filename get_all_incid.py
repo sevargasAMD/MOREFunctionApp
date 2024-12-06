@@ -1,5 +1,6 @@
 import azure.functions as func
 import pymssql
+import logging
 import json
 
 from function_app import app  # Import the shared app instance
@@ -7,12 +8,13 @@ from function_app import app  # Import the shared app instance
 @app.route(route="get_all_incid")
 def get_all_incid(req: func.HttpRequest) -> func.HttpResponse:
     # Database connection details
-    server = 'ATLCINVPRDV01\\INVDBSRV'
+    server = 'moreteam.database.windows.net'
     database = 'MORE'
-    username = 'AMD\\yashjain' 
-    password = 'MissionHacks1.0'
+    username = 'moreteam'
+    password = 'AntiDiversion1.0'
 
     try:
+        
         # Establish connection to SQL Server using pymssql
         conn = pymssql.connect(
             server=server,
@@ -20,10 +22,11 @@ def get_all_incid(req: func.HttpRequest) -> func.HttpResponse:
             password=password,
             database=database
         )
+        # conn = pyodbc.connect(connectionString)
         cursor = conn.cursor()
 
         # Execute query to fetch all IncID values
-        query = "SELECT IncID FROM [dbo].[Master Data]"
+        query = "SELECT IncID FROM [dbo].[Master]"
         cursor.execute(query)
         
         # Fetch all rows and convert to list

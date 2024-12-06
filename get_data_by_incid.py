@@ -6,10 +6,10 @@ import json
 from azure.functions import HttpRequest, HttpResponse
 
 # Database connection details
-server = 'ATLCINVPRDV01\\INVDBSRV'  # Server name
-database = 'MORE'                   # Database name
-username = 'AMD\\yashjain'          # Username with domain
-password = 'MissionHacks1.0'        # Password
+server = 'moreteam.database.windows.net'
+database = 'MORE'
+username = 'moreteam'
+password = 'AntiDiversion1.0'
 
 from function_app import app  # Import the shared app instance
 
@@ -32,7 +32,7 @@ def get_incident_data(incident_id):
         # Execute query with parameterized input
         logging.info(incident_id)
 
-        query = "SELECT * FROM [dbo].[Master Data] WHERE IncID = %s"
+        query = "SELECT * FROM [dbo].[Master] WHERE IncID = %s"
         cursor.execute(query, (incident_id,))
         rows = cursor.fetchall()
 

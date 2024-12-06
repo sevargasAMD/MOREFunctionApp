@@ -5,10 +5,10 @@ import pymssql
 
 from function_app import app  # Import the shared app instance
 
-server = 'ATLCINVPRDV01\\INVDBSRV'
+server = 'moreteam.database.windows.net'
 database = 'MORE'
-username = 'AMD\\yashjain' 
-password = 'MissionHacks1.0'
+username = 'moreteam'
+password = 'AntiDiversion1.0'
 
 @app.route(route="editIncident", methods=["POST"])
 def edit_case(req: func.HttpRequest) -> func.HttpResponse:
